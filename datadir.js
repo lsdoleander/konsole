@@ -2,7 +2,7 @@
 import path from 'node:path';
 import fs from "node:fs";
 
-export default function (name, opt) {
+function _datadir_(name, opt) {
 	let dir;
 	if (process.platform === 'linux') {
 		if (!opt || ["share", "local"].includes(opt.toLowerCase())) {
@@ -12,12 +12,22 @@ export default function (name, opt) {
 		} else if (opt && opt === "home") {
 			dir = path.join(process.env.HOME, `.${name}`);
 		}
+	
+	// Windows | local: "AppData\Local\<name>"
 	} else if (opt === "local" && process.env.LOCALAPPDATA) {
-		dir = path.join(process.env.LOCALAPPDATA, name); 
-	} else if (process.env.APPDATA && (!opt || opt !== "local")) {
-		dir = path.join(process.env.APPDATA, name); 
+		dir = path.join(process.env.LOCALAPPDATA, name); 	
+	// Windows | home: "My Documents/<name>"
+	} else if (opt === "home" && process.env.USERPROFILE) {
+		dir = path.join(process.env.USERPROFILE, "My Documents", name); 	
+	// Windows | share(default): "AppData\Roaming\<name>"
+	} else if (process.env.APPDATA && (!opt || (opt !== "local" && opt !== "home"))) {
+		dir = path.join(process.env.APPDATA, name);
+
+	// Mac Path
 	} else if (process.platform == 'darwin') {
 		dir = path.join(process.env.HOME, '/Library/Preferences', name);
+
+	// Catch All for Others
 	} else {
 		dir = path.join(process.env.HOME, `.${name}`);
 	}
@@ -27,4 +37,21 @@ export default function (name, opt) {
 	}
 
 	return dir;
+}
+
+
+export default function datadir(name) {
+	return _datadir_(name)
+}
+
+datadir.local = function(name) {
+	return _datadir_(name, "local")
+}
+
+datadir.share = function(name) {
+	return _datadir_(name, "share")
+}
+
+datadir.home = function(name) {
+	return _datadir_(name, "home")
 }

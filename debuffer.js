@@ -3,8 +3,6 @@ import fs from "node:fs"
 import os from "node:os"
 import path from 'node:path'
 
-export datadir from "./datadir.js"
-
 export default function debuffer (logsdir, opts={ console=true, exceptions=true, rejections=true, segfault=true }) {
 
 	let pathname = path.resolve(logsdir);
