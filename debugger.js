@@ -95,4 +95,6 @@ export default function debuffer (logsdir, opts={ console=true, exceptions=true,
 			_lo(def, msg);
 		}
 	}
+	
+	return API
 }
