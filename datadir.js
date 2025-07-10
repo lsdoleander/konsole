@@ -40,18 +40,20 @@ function _datadir_(name, opt) {
 }
 
 
-export default function datadir(name) {
-	return _datadir_(name)
-}
+export default {
+	datadir(name) {
+		return _datadir_(name)
+	},
+	
+	local(name) {
+		return _datadir_(name, "local")
+	},
 
-datadir.local = function(name) {
-	return _datadir_(name, "local")
-}
+	share(name) {
+		return _datadir_(name, "share")
+	},
 
-datadir.share = function(name) {
-	return _datadir_(name, "share")
-}
-
-datadir.home = function(name) {
-	return _datadir_(name, "home")
+	home(name) {
+		return _datadir_(name, "home")
+	}
 }
