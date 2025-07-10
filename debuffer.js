@@ -8,6 +8,40 @@ export function debuffer (logsdir, opts={ console:true, exceptions:true, rejecti
 	let pathname = path.resolve(logsdir);
 	if (!fs.existsSync(pathname)) fs.mkdirSync(pathname, { recursive: true });
 
+	function _lf(l="debug") { 
+		const today = new Date();
+		function zf(z) { const y=`${z}`;return y.length > 1 ? y : "0"+y; }
+		return path.join(pathname, `${l}_${zf(today.getMonth()+1) + zf(today.getDate()) + today.getFullYear()}.log`);
+	}
+
+	let def = _lf();
+
+	function _lo(path, msg) {
+		for (let idx in msg) {
+			if (typeof msg[idx] === "object") msg[idx] = JSON.stringify(thingy, null, 2);
+		}
+		fs.appendFileSync(path, `${msg.join(" ")}\n`, "utf-8");
+	}
+
+	let __k;
+
+	const API = {
+		console(){
+			return output;
+		},
+		logger(name){
+			let _p = _lf(name);
+			return {
+				log(...msg){
+					_lo(_p, msg);
+				}
+			}
+		},
+		log(...msg){
+			_lo(def, msg);
+		}
+	}
+
 	if (opts.segfault) {
 		const SegfaultHandler = (import("segfault-handler", async _module_ => {
 			return _module_.default;
@@ -58,40 +92,6 @@ export function debuffer (logsdir, opts={ console:true, exceptions:true, rejecti
             	errors.trace(err);
         	});
         }
-	}
-
-	function _lf(l="debug") { 
-		const today = new Date();
-		function zf(z) { const y=`${z}`;return y.length > 1 ? y : "0"+y; }
-		return path.join(pathname, `${l}_${zf(today.getMonth()+1) + zf(today.getDate()) + today.getFullYear()}.log`);
-	}
-
-	let def = _lf();
-
-	function _lo(path, msg) {
-		for (let idx in msg) {
-			if (typeof msg[idx] === "object") msg[idx] = JSON.stringify(thingy, null, 2);
-		}
-		fs.appendFileSync(path, `${msg.join(" ")}\n`, "utf-8");
-	}
-
-	let __k;
-
-	const API = {
-		console(){
-			return output;
-		},
-		logger(name){
-			let _p = _lf(name);
-			return {
-				log(...msg){
-					_lo(_p, msg);
-				}
-			}
-		},
-		log(...msg){
-			_lo(def, msg);
-		}
 	}
 	
 	return API
