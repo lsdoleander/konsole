@@ -76,7 +76,7 @@ export function debuffer (logsdir, opts={ console:true, exceptions:true, rejecti
             let syscall = console[method];
             console[method] = function monkeylogger (...args) {
                 if (method === "trace") intercepts.trace("[TRACE]", ...args);
-                else intercepts.log(`[${(label||method).toUpperCase()}`, ...args);
+                else intercepts.log(`[${(label||method).toUpperCase()}]`, ...args);
             }
             return solecons;
         }
