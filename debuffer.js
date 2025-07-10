@@ -49,7 +49,7 @@ export function debuffer (logsdir, opts={ console:true, exceptions:true, rejecti
 	            errors.trace(reason);
 	            errors.log("  \\\\---> at Promise:");
 	            errors.trace(p);
-	        }
+	        });
 	    }
 
 	    if (opts.exceptions) {
