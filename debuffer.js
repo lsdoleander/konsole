@@ -3,7 +3,7 @@ import fs from "node:fs"
 import os from "node:os"
 import path from 'node:path'
 
-export default function debuffer (logsdir, opts={ console=true, exceptions=true, rejections=true, segfault=true }) {
+export function debuffer (logsdir, opts={ console=true, exceptions=true, rejections=true, segfault=true }) {
 
 	let pathname = path.resolve(logsdir);
 	if (!fs.existsSync(pathname)) fs.mkdirSync(pathname, { recursive: true });

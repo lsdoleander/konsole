@@ -1,9 +1,12 @@
 
-export StopWatch from './stopwatch'
-export gradient from 'gradient-string'
-export debuffer from './debuffer.js'
-export datadir from './datadir.js'
-export { chalk, coloris } from './coloris.js'
+
+export { default as gradient } from 'gradient-string'
+export { default as chalk } from 'chalk'
+
+export { StopWatch } from './stopwatch'
+export { debuffer } from './debuffer.js'
+export { datadir } from './datadir.js'
+export { coloris } from './coloris.js'
 export { komponent } from './konsole.js'
 
 export default {

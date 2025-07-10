@@ -1,5 +1,5 @@
 
-export chalk from "chalk";
+import chalk from "chalk";
 
 export const coloris = (function(){
 	const colors = {
@@ -158,5 +158,3 @@ export const coloris = (function(){
 		css[colorKey] = chalk.hex(colors[name]);
 	}
 })()
-
-export default coloris;

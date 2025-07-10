@@ -1,5 +1,5 @@
 
-export { chalk, coloris } from "./coloris.js"
+import { chalk, coloris } from "./coloris.js"
 
 let $internal = (function(){
     if (!(console.$monkeypatched === true)) {
@@ -69,4 +69,3 @@ function factory(prefix){
 
 export const komponent = factory().komponent;
 
-export default komponent;

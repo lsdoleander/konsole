@@ -40,7 +40,7 @@ function _datadir_(name, opt) {
 }
 
 
-export default {
+export const datadir = {
 	datadir(name) {
 		return _datadir_(name)
 	},
