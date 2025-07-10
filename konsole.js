@@ -1,5 +1,6 @@
 
 import { coloris } from "./coloris.js"
+import { StopWatch } from  "./stopwatch.js"
 import chalk from 'chalk'
 
 let $internal = (function(){
