@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "chalk": "^5.4.1",
-    "gradient-string": "^3.0.0",
-    "segfault-handler": "^1.3.0"
+    "gradient-string": "^3.0.0"
   }
 }
