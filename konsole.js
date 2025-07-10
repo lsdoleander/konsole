@@ -1,6 +1,6 @@
 
 import { coloris } from "./coloris.js"
-import { chalk } from 'chalk'
+import chalk from 'chalk'
 
 let $internal = (function(){
     if (!(console.$monkeypatched === true)) {
