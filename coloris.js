@@ -155,7 +155,7 @@ export const coloris = (function(){
 
 	let out = {};
 	for (let colorKey in colors) {
-		out[colorKey] = chalk.hex(colors[name]);
+		out[colorKey] = chalk.hex(colors[colorKey]);
 	}
 	return out;
 })()
