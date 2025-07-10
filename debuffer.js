@@ -8,7 +8,7 @@ export function debuffer (logsdir, opts={ console:true, exceptions:true, rejecti
 	let pathname = path.resolve(logsdir);
 	if (!fs.existsSync(pathname)) fs.mkdirSync(pathname, { recursive: true });
 
-	if (segfault) {
+	if (opts.segfault) {
 		const SegfaultHandler = (import("segfault-handler", async _module_ => {
 			return _module_.default;
 		}))();
