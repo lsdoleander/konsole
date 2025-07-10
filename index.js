@@ -8,13 +8,3 @@ export { debuffer } from './debuffer.js'
 export { datadir } from './datadir.js'
 export { coloris } from './coloris.js'
 export { komponent } from './konsole.js'
-
-export default {
-    StopWatch,
-    gradient,
-    debuffer,
-    datadir,
-    chalk,
-    coloris,
-    komponent
-}
