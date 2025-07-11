@@ -44,19 +44,19 @@ function _datadir_(name, opt, ...extra) {
 
 
 export const datadir = {
-	datadir(name, join) {
-		return _datadir_(name, null, join)
+	datadir(name, ...join) {
+		return _datadir_(name, null, ...join)
 	},
 	
-	local(name, join) {
-		return _datadir_(name, "local", join)
+	local(name, ...join) {
+		return _datadir_(name, "local", ...join)
 	},
 
-	share(name, join) {
-		return _datadir_(name, "share", join)
+	share(name, ...join) {
+		return _datadir_(name, "share", ...join)
 	},
 
-	home(name, join) {
-		return _datadir_(name, "home", join)
+	home(name, ...join) {
+		return _datadir_(name, "home", ...join)
 	}
 }
