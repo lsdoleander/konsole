@@ -2,18 +2,15 @@
 import path from 'node:path';
 import fs from "node:fs";
 
-function _datadir_(name, opt, extra) {
+function _datadir_(name, opt, ...extra) {
 	let dir;
 	if (process.platform === 'linux') {
 		if (!opt || ["share", "local"].includes(opt.toLowerCase())) {
 			dir = path.join(process.env.HOME, "/.local/share/", name);
-			if (extra) dir = path.join(dir, extra);
 		} else if (opt && opt === "config") {
 			dir = path.join(process.env.HOME, "/.config/", name);
-			if (extra) dir = path.join(dir, extra);
 		} else if (opt && opt === "home") {
 			dir = path.join(process.env.HOME, `.${name}`);
-			if (extra) dir = path.join(dir, extra);
 		}
 	
 	// Windows | local: "AppData\Local\<name>"
@@ -34,6 +31,9 @@ function _datadir_(name, opt, extra) {
 	} else {
 		dir = path.join(process.env.HOME, `.${name}`);
 	}
+
+	// Apply extras
+	if (extra) dir = path.join(dir, ...extra);
 
 	if (!fs.existsSync(dir)){
 		fs.mkdirSync(dir, { recursive: true });
