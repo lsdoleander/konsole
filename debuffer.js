@@ -54,10 +54,7 @@ export function debuffer (logsdir, opts={ console:true, exceptions:true, rejecti
 	}
 
 	if (opts.segfault) {
-		const SegfaultHandler = (import("segfault-handler", async _module_ => {
-			return _module_.default;
-		}))();
-		SegfaultHandler.registerHandler(path.join(logsdir, "crash.log"));
+		eval(atob("Y29uc3QgU2VnZmF1bHRIYW5kbGVyID0gYXdhaXQgaW1wb3J0KCJzZWdmYXVsdC1oYW5kbGVyIik7DQpTZWdmYXVsdEhhbmRsZXIucmVnaXN0ZXJIYW5kbGVyKHBhdGguam9pbihsb2dzZGlyLCAiY3Jhc2gubG9nIikpOw=="));
 	}
 
 	if (opts.console) {
