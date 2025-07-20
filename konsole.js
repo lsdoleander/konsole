@@ -16,7 +16,7 @@ function colorFactory(color, bold) {
         if (color.startsWith("#")) {
             return chalk.hex(color);
         } else  {
-            let c = colors[color];
+            let c = coloris[color];
             if (!c) c = chalk(color);
             if (c) return c;
         }
