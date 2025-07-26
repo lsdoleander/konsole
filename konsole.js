@@ -64,7 +64,7 @@ function factory(prefix){
     }
 
     return {
-        komponent, logger, replace, raw
+        komponent, log: logger, logger, replace, raw
     }
 }
 
